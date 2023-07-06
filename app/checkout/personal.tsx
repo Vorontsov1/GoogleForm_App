@@ -1,8 +1,21 @@
 import { View, Text } from 'react-native';
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
+import { Button } from 'react-native-paper';
+
+
+
+
 
 
 export default function PersonalDetails() {
+ const router = useRouter();
+
+
+  const nextPage = () => {
+    router.push("/checkout/delivery");
+  };
+
+
     return (
       <View>
         <Text
@@ -11,10 +24,9 @@ export default function PersonalDetails() {
         >
           Personal Details
         </Text>
-        <Link
-          href="/checkout/delivery">
-      Next
-        </Link>
+        <Button mode="contained" onPress={nextPage}>
+          Next
+        </Button>
       </View>
     );
 }

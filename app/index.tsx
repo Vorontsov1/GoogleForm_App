@@ -6,19 +6,19 @@ LogBox.ignoreLogs(["Constants.platform.ios.model has been deprecated"]);
 export default function Page() {
 
 
+  // return (
+  //   <Redirect href={'/checkout'}  />
+  // )
   return (
-    <Redirect href={'/checkout'}  />
-  )
-//   return (
-//     <View style={styles.container}>
-//       <View style={styles.main}>
-//         <Text style={styles.title}>Hello World</Text>
-//         <Link href="/checkout" style={styles.subtitle}>Checkout</Link>
-//       </View>
+    <View style={styles.container}>
+      <View style={styles.main}>
+        <Text style={styles.title}>Hello World</Text>
+        <Link href="/checkout" style={styles.subtitle}>Checkout</Link>
+      </View>
 
 
-//     </View>
-//   );
+    </View>
+  );
   }
 
 const styles = StyleSheet.create({
