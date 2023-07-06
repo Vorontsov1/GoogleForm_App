@@ -17,17 +17,23 @@ export default function CheckoutStack () {
           }}
         >
           <Stack.Screen
-            name="personal"
-            options={{
-              title: "Personal information",
-            }}
-          />
-          <Stack.Screen
             name="delivery"
             options={{
               title: "Delivey information",
             }}
           />
+          <Stack.Screen
+            name="personal"
+            options={{
+              title: "Personal information",
+            }}
+          />
+          {/* <Stack.Screen
+            name="delivery"
+            options={{
+              title: "Delivey information",
+            }}
+          /> */}
           <Stack.Screen
             name="payment"
             options={{ title: "Payment information" }}
