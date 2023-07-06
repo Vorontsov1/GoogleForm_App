@@ -1,56 +1,83 @@
 import { View, Text, ScrollView } from 'react-native';
 import { Link, useRouter } from "expo-router";
-import { Button, Card, TextInput, useTheme  } from "react-native-paper";
+import {
+  Button,
+  Card,
+  TextInput,
+  useTheme,
+  HelperText,
+} from "react-native-paper";
 import { useState } from 'react';
+import {useForm, Controller} from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod'; 
+import { PersonalInfoSchema, PersonalInfo } from '../../src/schema/checkout.schema.ts';
+import ControlledInput from '../../src/components/ControlledInput';
+
+
+
+
 
 
 
 
 
 export default function PersonalDetails() {
-  const [text, setText] = useState("");
-  const [email, setEmail] = useState("");
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<PersonalInfo>({
+    resolver: zodResolver(PersonalInfoSchema),
+  });
+  console.log(errors);
+
+
+
   const theme  = useTheme();
  const router = useRouter();
 
 
-  const nextPage = () => {
+  const nextPage = (data) => {
+    console.log('form field', data); 
     router.push("/checkout/delivery");
   };
 
 
     return (
-      <ScrollView contentContainerStyle={ { gap: 15, maxWidth: 500, width: "100%", alignSelf: 'center', } }
-      showsVerticalScrollIndicator={false}
+      <ScrollView
+        contentContainerStyle={{
+          gap: 15,
+          maxWidth: 500,
+          width: "100%",
+          alignSelf: "center",
+        }}
+        showsVerticalScrollIndicator={false}
       >
         <Card
-          style={{ backgroundColor: theme.colors.background, borderRadius: 10, maxWidth: 500 }}
+          style={{
+            backgroundColor: theme.colors.background,
+            borderRadius: 10,
+            maxWidth: 500,
+          }}
         >
           <Card.Title title="Personal information" titleVariant="titleLarge" />
           <Card.Content style={{ gap: 10 }}>
-            <TextInput
-              placeholder="Name"
+            <ControlledInput
+              control={control}
+              placholder="Name"
+              name="name"
               label="Name"
-              style={{
-                backgroundColor: theme.colors.background,
-                borderRadius: 10,
-              }}
-              value={text}
-              onChangeText={(text) => setText(text)}
             />
-            <TextInput
+
+            <ControlledInput
+              control={control}
+              name="email"
               placeholder="hey@gmail.com"
-              style={{
-                backgroundColor: theme.colors.background,
-                borderRadius: 10,
-              }}
               label="Email"
-              value={email}
-              onChangeText={(text) => setEmail(email)}
             />
           </Card.Content>
         </Card>
-        <Button mode="contained" onPress={nextPage}>
+        <Button mode="contained" onPress={handleSubmit(nextPage)}>
           Next
         </Button>
       </ScrollView>
