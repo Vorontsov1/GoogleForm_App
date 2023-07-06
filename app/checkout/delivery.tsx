@@ -1,25 +1,80 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { Link, useRouter } from "expo-router";
-import { Button } from "react-native-paper";
+import {useState} from 'react'
+import {
+  Button,
+  Card,
+  TextInput,
+  useTheme,
+  RadioButton,
+} from "react-native-paper";
 
 export default function DeliveyDetails() {
+const [shiping, setShiping] = useState('free')
 
+const theme = useTheme();
    const router = useRouter();
 
    const nextPage = () => {
      router.push("/checkout/payment");
    };
   return (
-    <View>
-      <Text
-        href="/checkout/payment"
-        style={{ fontSize: 20, fontWeight: "bold", color: "#000" }}
+    <ScrollView
+      contentContainerStyle={{
+        gap: 15,
+        maxWidth: 500,
+        width: "100%",
+        alignSelf: "center",
+      }}
+      showsVerticalScrollIndicator={false}
+    >
+      <Card
+        style={{ backgroundColor: theme.colors.background, borderRadius: 10 }}
       >
-        Delivey Details
-      </Text>
+        <Card.Title title={"Delivery address"} titleVariant="titleLarge" />
+        <Card.Content style={{ gap: 10 }}>
+          <TextInput
+            label="City"
+            style={{
+              backgroundColor: theme.colors.background,
+              borderRadius: 10,
+            }}
+          />
+          <TextInput
+            label="Postal Code"
+            style={{
+              backgroundColor: theme.colors.background,
+              borderRadius: 10,
+            }}
+          />
+          <TextInput
+            label="Address"
+            style={{
+              backgroundColor: theme.colors.background,
+              borderRadius: 10,
+            }}
+          />
+        </Card.Content>
+      </Card>
+      <Card
+        style={{ backgroundColor: theme.colors.background, borderRadius: 10 }}
+      >
+        <Card.Title title={"Shiping options"} titleVariant="titleLarge" />
+        <Card.Content style={{ gap: 10 }}>
+          <RadioButton.Group
+            onValueChange={(value) => setShiping(value)}
+            value={shiping}
+          >
+            <RadioButton.Item label="Free" value="free" />
+            <RadioButton.Item label="Fast" value="fast" />
+            <RadioButton.Item label="Same day" value="same_day" />
+          </RadioButton.Group>
+        </Card.Content>
+      </Card>
+
       <Button mode="contained" onPress={nextPage}>
         Next
       </Button>
-    </View>
+    </ScrollView>
   );
 }
