@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import { LogBox } from "react-native";
-import { Link, Redirect } from "expo-router";
+import { Link } from "expo-router";
 LogBox.ignoreLogs(["Constants.platform.ios.model has been deprecated"]);
 
 export default function Page() {

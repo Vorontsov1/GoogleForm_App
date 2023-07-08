@@ -1,12 +1,10 @@
 import { View, Text, ScrollView, Alert } from "react-native";
-import { Link, useRouter } from 'expo-router';
+import {  useRouter } from 'expo-router';
 import {
   Button,
   Card,
-  TextInput,
   useTheme,
   Checkbox,
-  HelperText,
 } from "react-native-paper";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

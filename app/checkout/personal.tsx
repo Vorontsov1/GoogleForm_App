@@ -1,14 +1,13 @@
-import { View, Text, ScrollView } from 'react-native';
-import { Link, useRouter } from "expo-router";
+import {  ScrollView } from 'react-native';
+import { useRouter } from "expo-router";
 import {
   Button,
   Card,
   TextInput,
   useTheme,
   HelperText,
-} from "react-native-paper";
-import { useState } from 'react';
-import {useForm, Controller} from 'react-hook-form';
+} from "react-native-paper"; 
+import {useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod'; 
 import { PersonalInfoSchema, PersonalInfo } from '../../src/schema/checkout.schema.ts';
 import ControlledInput from '../../src/components/ControlledInput';
