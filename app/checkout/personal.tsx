@@ -70,6 +70,19 @@ export default function PersonalDetails() {
               placeholder="hey@gmail.com"
               label="Email"
             />
+
+            <ControlledInput
+              control={control}
+              name="password"
+              label="Password"
+              secureTextEntry
+            />
+            <ControlledInput
+              control={control}
+              name="confirmPassword"
+              label="ConfirmPassword"
+              secureTextEntry
+            />
           </Card.Content>
         </Card>
         <Button mode="contained" onPress={handleSubmit(nextPage)}>
