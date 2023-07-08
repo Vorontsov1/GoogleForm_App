@@ -24,7 +24,7 @@ name,
         field: { value, onChange, onBlur },
         fieldState: { error, invalid },
       }) => (
-        <View>
+        <View style={{flex: 1}}>
           <TextInput
            {...TextInputProps}
             onBlur={onBlur}

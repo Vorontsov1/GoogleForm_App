@@ -13,25 +13,30 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DeliveryInfoSchema, DeliveryInfo } from '../../src/schema/checkout.schema';
 import ControlledInput from "../../src/components/ControlledInput"; 
+import { useCheckoutContext } from "../../src/context/CheckoutContext";
 
 
 
-export default function DeliveyDetails() {
+
+
+export default function DeliveryDetails() {
   const { control, handleSubmit } = useForm<DeliveryInfo>({
     resolver: zodResolver(DeliveryInfoSchema),
     defaultValues: {
-      shiping: "free",
-    }
-  })
+      shipping: "free",
+    },
+  });
 
+  const {setDelivery } = useCheckoutContext();
 
+  const theme = useTheme();
+  const router = useRouter();
 
-const theme = useTheme();
-   const router = useRouter();
-
-   const nextPage = () => {
-     router.push("/checkout/payment");
-   };
+  const nextPage = (data: DeliveryInfo) => {
+    setDelivery(data);
+    
+    router.push("/checkout/payment");
+  };
   return (
     <ScrollView
       contentContainerStyle={{
@@ -105,7 +110,6 @@ const theme = useTheme();
           />
         </Card.Content>
       </Card>
-
       <Button mode="contained" onPress={handleSubmit(nextPage)}>
         Next
       </Button>

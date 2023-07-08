@@ -18,3 +18,12 @@ export const DeliveryInfoSchema = z.object({
 });
 
 export type DeliveryInfo = z.infer<typeof DeliveryInfoSchema>;
+
+export const PaymentInfoSchema = z.object({
+  number: z.string(),
+  expirationDate: z.string(),
+  securityCode: z.string(),
+  saveInfo: z.boolean(),
+});
+
+export type PaymentInfo = z.infer<typeof PaymentInfoSchema>;
